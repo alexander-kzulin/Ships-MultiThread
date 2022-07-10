@@ -63,6 +63,7 @@ private int id;
                 '}';
     }
 
+
   // @Override
   // public void run() {
   //     ShipGenerator shipGenerator = new ShipGenerator();
@@ -80,12 +81,12 @@ class ShipGenerator implements Runnable {
     }
 
     public void shipGenerator() throws InterruptedException {
-        ShipGenerator shipGenerator = new ShipGenerator();
-        shipGenerator.run();
+        // ShipGenerator shipGenerator = new ShipGenerator();
+        //  shipGenerator.run();
         ExecutorService executorService = Executors.newFixedThreadPool(5);
 
 
-        for (int i = 0; i < 4; i++)
+        for (int i = 0; i < 5; i++)
             executorService.submit(new ShipGenerator(i));
             executorService.shutdown();
     }
@@ -99,20 +100,25 @@ class ShipGenerator implements Runnable {
     public void run() {
 
 
-        try {
-                            Ship ship = new Ship();
-                            ship.getShipSize();
-                            ship.getShipType();
-                            generatedShips.put(ship);
-                            System.out.println("Ship is created " + ship);
+
+
+            try {
+                Ship ship = new Ship();
+                ship.getShipSize();
+                ship.getShipType();
+                generatedShips.put(ship);
+                new ArrayBlockingQueue<Ship>(5).addAll(generatedShips);
+                System.out.println("Ship is created " + ship + id);
+                System.out.println();
+
 
             } catch (Exception e) {
-                e.printStackTrace();
+                System.out.println(e.getMessage());
             }
         }
 
-
-
-
-
     }
+
+
+
+

@@ -7,9 +7,9 @@ public class Tunnel {
     private int capacity;
     private String name;
 
-    public Tunnel() {
-        ships  = new ArrayBlockingQueue<>(5);
-    }
+   // public Tunnel() {
+   //     ArrayBlockingQueue<Ship> ships = new ArrayBlockingQueue<>(5);
+   // }
 
     public int getCapacity() {
         return capacity;
