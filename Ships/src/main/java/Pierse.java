@@ -6,7 +6,6 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class Pierse implements Runnable{
-    private ArrayBlockingQueue<Ship> generatedShips;
     private int pierseId;
     private String pierseName;
     public Pierse(int pierseId, String pierseName) {
@@ -15,12 +14,30 @@ public class Pierse implements Runnable{
 
     }
 
+
+
+
+    public Pierse() {
+
+    }
+
+
     @Override
     public void run() {
 
-        ShipGenerator shipGenerator  = new ShipGenerator();
-generatedShips.co
+        ShipGenerator shipGenerator = new ShipGenerator();
         ExecutorService executorService = Executors.newFixedThreadPool(3);
-        System.out.println();
+        for(Ship ship : shipGenerator.getGeneratedShips() ){
+            try {
+                shipGenerator.getGeneratedShips().put(new Ship());
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            executorService.submit(new Pierse());
+            System.out.println("Ship going to pierse");
+            executorService.shutdown();
+        }
     }
-}
+
+    }
+
